@@ -1,0 +1,12 @@
+.app-header-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.app-header-left{
+    display: flex;
+    align-items: center;
+}
+img[src*="settings"] {
+    cursor: pointer;
+}

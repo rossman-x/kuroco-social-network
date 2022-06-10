@@ -66,15 +66,11 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Generate
-        run: npm run generate
-        # - name: Zip artifact for upload
-        #  run: cd dist && zip ../dist.zip . -r
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.sha }}-${{ github.run_id }}
-          path: dist
+          path: public/build
           retention-days: 7
       - name: Webhook
         uses: diverta/workflow-webhook@v2

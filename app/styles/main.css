@@ -1,0 +1,11 @@
+body {
+  background-color: #bcdced;
+}
+
+.inner-screen {
+  border-radius: 5px;
+  background-color: white;
+  width: 530px;
+  margin: 0 auto;
+}
+
