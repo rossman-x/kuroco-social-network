@@ -1,4 +1,4 @@
-name: Build and deploy to Kuroco front
+name: Build and deploy as a cloudflare Worker
 on:
   push:
     branches:
@@ -13,3 +13,5 @@ jobs:
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          email: ${{ secrets.CF_EMAIL }}
+          wranglerVersion: '2.0.8'
