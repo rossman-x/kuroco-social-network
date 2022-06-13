@@ -1,8 +1,5 @@
 name = "kuroco-social-network"
 compatibility_date = "2022-06-10"
-
-zone_id = ""
-account_id = ""
 workers_dev = true
 main = "./build/index.js"
 
