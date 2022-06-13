@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert Component should perform the action when the button is clicked. 1`] = `Object {}`;
