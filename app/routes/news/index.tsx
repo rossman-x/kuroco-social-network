@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostComponent from "~/components/post-component";
+import Spinner from "~/components/spinner";
 import Post from "~/declarations/post";
 import { getPostsList } from "~/services/post.service";
 import styles from "~/styles/post.css";
@@ -9,7 +10,7 @@ export const links = () => {
 };
 
 const NewsComponent = () => {
-  const [posts, updatePosts] = useState<Post[]>([]);
+  const [posts, updatePosts] = useState<Post[] | undefined>();
 
   useEffect(() => {
     const fetch = async () => {
@@ -25,14 +26,18 @@ const NewsComponent = () => {
   }, []);
 
   const updatePost = (post: Post) => {
-    updatePosts(() => posts.map((p) => (p.id === post.id ? post : p)));
+    updatePosts(() => posts && posts.map((p) => (p.id === post.id ? post : p)));
   };
 
   return (
     <div className="">
-      {posts.map((post) => (
-        <PostComponent post={post} updatePost={updatePost} />
-      ))}
+      {posts ? (
+        posts.map((post) => (
+          <PostComponent post={post} updatePost={updatePost} />
+        ))
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 };
