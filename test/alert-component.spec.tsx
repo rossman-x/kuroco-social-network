@@ -31,6 +31,7 @@ describe("Alert Component", () => {
     const firstRender = asFragment();
     fireEvent.click(getByText("Close"));
     expect(firstRender).toMatchSnapshot(asFragment());
-    expect(mockedFunction).toHaveBeenCalled()
+    expect(mockedFunction).toHaveBeenCalled();
+    
   });
 });

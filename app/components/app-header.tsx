@@ -6,10 +6,14 @@ import AlertComponent from "./alert-component";
 const AppHeader = () => {
   const me = useInfo();
   return me ? (
-    <div className="w-100 bg-sky-50/100 m-4 h-24 rounded-lg app-header-main">
+    <div
+      data-testid="app-header-main"
+      className="w-100 bg-sky-50/100 m-4 h-24 rounded-lg app-header-main"
+    >
       <div className="app-header-left">
         <img
           className="p-4 h-24 rounded-full"
+          alt="Avatar image"
           src={me.avatar ? me.avatar : avatarImage}
         />
         <div>

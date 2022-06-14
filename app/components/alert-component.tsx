@@ -8,7 +8,10 @@ const AlertComponent = ({
   action: () => void;
 }) => {
   return (
-    <div className="mx-auto w-2/6 md:w-3/6 sm:w-5/6 mt-40">
+    <div
+      className="mx-auto w-2/6 md:w-3/6 sm:w-5/6 mt-40"
+      data-testid="alert-component"
+    >
       <div className="mx-auto relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="sm:flex sm:items-start">
