@@ -20,8 +20,10 @@ jobs:
           node-version: 16.7.0
       - name: Download deps
         run: npm install
-      - name: Running tests
-        run: npm test
+      - name: Running units tests
+        run: npm run test
+      - name: Running e2e tests
+        run: npm run e2e-test
       - name: Publish
         run: npx wrangler publish
         env:

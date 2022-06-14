@@ -12,6 +12,7 @@
     "deploy": "wrangler publish",
     "start": "remix-serve build",
     "test": "jest",
+    "e2e-test": "cypress run",
     "coverage": "jest run --coverage"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "@types/jest": "^28.1.1",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
+    "cypress": "^10.1.0",
     "eslint": "^8.15.0",
     "jest": "^28.1.1",
     "npm-run-all": "^4.1.5",

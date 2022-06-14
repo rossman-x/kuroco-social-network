@@ -27,7 +27,7 @@ export const generateToken = async (grantToken: string) => {
 };
 
 export const getCurrentUserInfo = async (): Promise<User> => {
-  const result = await getData(`${HostUrl}/me`);
+  const result: any = await getData(`${HostUrl}/me`);
   if (!result || !result.details) throw new Error("Cannot fetch data.");
   return userConverter(result.details);
 };

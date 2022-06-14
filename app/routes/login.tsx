@@ -21,11 +21,11 @@ const LoginComponent = () => {
     }
     try {
       setIsLoading(true);
-      const gtResponse = await getGrantToken(emailAddress, password);
+      const gtResponse: any = await getGrantToken(emailAddress, password);
       const grantToken = gtResponse.grant_token;
       if (!grantToken) throw new Error("Unknown error occurred!");
       localStorage.setItem("grantToken", grantToken);
-      const tResponse = await generateToken(grantToken);
+      const tResponse: any = await generateToken(grantToken);
       if (!tResponse?.access_token?.value)
         throw new Error("Unknown error occurred!");
       localStorage.setItem("token", tResponse.access_token.value);
@@ -44,7 +44,7 @@ const LoginComponent = () => {
       action={() => setError(undefined)}
     />
   ) : (
-    <div className="inner-screen login-main">
+    <div className="inner-screen login-main" data-testid="login-page-main">
       <div className="login-container">
         <img className="login-logo-img" src={logoSrc} />
 
@@ -52,18 +52,20 @@ const LoginComponent = () => {
           <div className="login-form-header">
             <h1>Login to your account</h1>
           </div>
-          <div className="login-form-body">
+          <div className="login-form-body" data-testid="login-form">
             <input
               type="text"
               className="login-input"
               placeholder="E-mail Address"
               ref={emailAddressRef}
+              data-testid="email-input"
             />
             <input
               type="password"
               className="login-input"
               placeholder="Password"
               ref={passwordRef}
+              data-testid="password-input"
             />
             <button
               disabled={isLoading}
