@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["../remix.env.d.ts", "../assetsTransformer.js"],
+  "exclude": [],
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+  }
+}
