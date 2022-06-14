@@ -4,7 +4,6 @@ import {
   RenderWithoutProviders,
   RenderWithProviders,
 } from "./mocks";
-import userInfo from "app/hooks/useInfo";
 import { RenderResult } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import avatarImage from "~/assets/avatar.png";
