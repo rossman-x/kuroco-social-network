@@ -60,6 +60,8 @@ Please make sure you sign up to [Kuroco free trial](https://kuroco.app/free_tria
 
 please open the api page and select `import api`, then upload the file `<rootDir>/exported_api.yaml`. Make sure to modify `topics_group_id` and `default_group_id` and match it with your model id and users group id.
 
+[![Image from Gyazo](https://t.gyazo.com/teams/diverta/af3a001cc0925c4377be42704fa79dcc.png)](https://diverta.gyazo.com/af3a001cc0925c4377be42704fa79dcc)
+
 In order to test your new api, please use this [postman collection](https://www.getpostman.com/collections/7cd8473b5c2f4790c0d5) and modify the website subdomain so it links to your kuroco api.
 
 ## Hosting configuration
