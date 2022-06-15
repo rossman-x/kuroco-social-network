@@ -6,7 +6,6 @@ import User from "~/declarations/user";
 import { InfoContextProvider } from "~/hooks/useInfo";
 import { getCurrentUserInfo } from "~/services/auth.service";
 import styles from "~/styles/header.css";
-import postStyles from "~/styles/post.css";
 
 export const links = () => {
   return [{ rel: "stylesheet", href: styles }];

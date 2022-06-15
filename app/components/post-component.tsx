@@ -123,7 +123,10 @@ const PostComponent = ({ post, updatePost }: props) => {
           <h2 className="text-lg font-bold mb-2">{post.title.toUpperCase()}</h2>
           {!!post.content && <div className="mb-2">{post.content}</div>}
           {!!post.image && (
-            <img className="w-full mx-auto my-4 rounded-lg" src={post.image} />
+            <img
+              className="w-full mx-auto my-4 rounded-lg"
+              src={`${post.image}?format=pjpg&auto=webp&quality=85,75`}
+            />
           )}
           {
             /* Hashtags goes here */
