@@ -12,7 +12,7 @@
     "deploy": "wrangler publish",
     "start": "remix-serve build",
     "test": "jest",
-    "e2e-test": "cypress run",
+    "e2e": "cypress run",
     "coverage": "jest run --coverage"
   },
   "dependencies": {

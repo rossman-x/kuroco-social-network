@@ -23,7 +23,7 @@ jobs:
       - name: Running units tests
         run: npm run test
       - name: Running e2e tests
-        run: npm run e2e-test
+        run: npm run e2e
       - name: Publish
         run: npx wrangler publish
         env:
