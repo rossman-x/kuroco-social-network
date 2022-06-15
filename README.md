@@ -1,53 +1,59 @@
-# Welcome to Remix!
+# Kuroco Social Network Web Application
 
-- [Remix Docs](https://remix.run/docs)
+This web application was developed using **Kuroco** technology, it's main purpose is to demonstrate the effiency of **Kuroco** in a web application.
 
-## Development
+## Technologies
 
-From your terminal:
+### Back-End stacks
 
-```sh
-npm run dev
-```
+- Kuroco contents
+- Kuroco api
+- Kuroco files
+- Kuroco activities
+- Kuroco member
+- Kuroco operations
 
-This starts your app in development mode, rebuilding assets on file changes.
+### Front-End stacks
 
-## Deployment
+- Node js
+- Remix js - _ontop of React_
+- TypeScript
+- Tailwind css
+- Cypress
+- Jest
 
-First, build your app for production:
+### DevOps stacks
 
-```sh
-npm run build
-```
+- Cloudflare workers
+- Github CI
 
-Then run the app in production mode:
+## Project building process
 
-```sh
-npm start
-```
+In order to recreate this project and run it on your local machine, please follow these steps and make sure to have npm installed on your pc.
 
-Now you'll need to pick a host to deploy it to.
+1.  Install the dependencies
+    `npm install`
+    > Before moving to the next step, make sure you have configured your cloudflare account and you logged in from the cli.
+2.  Open the project's folder and execute this command:
+    `npm run start-server`
 
-### DIY
+3.  _Congratulation_, you just launched your first Remix application.
+    > Your project will be hosted locally at _http://localhost:8787_.
 
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+## Project testing process
 
-Make sure to deploy the output of `remix build`
+This project contains Unit tests and E2E tests that are also executed in the CI workflow.
 
-- `build/`
-- `public/build/`
+> We use React testing library alongside with Jest testing tool for Units tests.
 
-### Using a Template
+- To run your unit tests, please execute this command:
+  `npm run test`
 
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
+> For E2E tests, we use cypress, you can install cypress on your local machine to watch the testing process live.
 
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+- To run E2E tests, please execute this command:
+  `npm run e2e`
+
+## Project Structure
+
+The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.
