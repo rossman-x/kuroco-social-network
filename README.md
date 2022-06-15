@@ -52,7 +52,7 @@ This project contains Unit tests and E2E tests that are also executed in the CI 
 
 ## Project Structure
 
-The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.
+The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.x
 
 ## Kuroco configuration
 
