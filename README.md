@@ -77,7 +77,7 @@ You will be redirected to cloudflare website in order to confirm your credential
 ## Continuous integration
 
 This project is configured to be directly published to a production environment when you push a modification to the `master` branch, the workflow `deploy` process will executes serval steps before publishing to Cloudflare.
-
+[![Image from Gyazo](https://t.gyazo.com/teams/diverta/456b72cb5d2fde90afbfc7e4f5b72228.png)](https://diverta.gyazo.com/456b72cb5d2fde90afbfc7e4f5b72228)
 1. First, it will cancel any running process so it won't get into a conflict.
 2. Then, it will checkout the branch and install npm and the required dependencies.
 3. It will run all units tests and e2e tests automatically.
