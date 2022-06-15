@@ -12,11 +12,11 @@ const config: Config.InitialOptions = {
   // https://github.com/zeit/next.js/issues/8663#issue-490553899
   globals: {
     "ts-jest": {
-      tsconfig: "<rootDir>/test/tsconfig.test.json",
+      tsconfig: "<rootDir>/test/tsconfig.json",
     },
   },
   moduleNameMapper: {
-    "^app/components/(.*)$": "<rootDir>/app/components/$1",
+    "^app/(.*)$": "<rootDir>/app/$1",
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css)$":
       "<rootDir>/assetsTransformer.js",
     "~/(.*)$": "<rootDir>/app/$1",
