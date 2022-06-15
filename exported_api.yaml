@@ -1,0 +1,418 @@
+api_header:
+    title: 'Default API'
+    version: '1.0'
+    description: Default
+    cors: '{"maxAge": "600", "headers": ["x-rcms-api-access-token"], "methods": ["GET", "PUT", "POST"], "origins": ["https://test-site.g.kuroco-front.app", "https://test-site.g.kuroco-mng.app"], "allowCredentials": true}'
+    config: '{"security": "cookie"}'
+uri_list:
+    -
+        api_uri: members
+        summary: 'In use'
+        description: ''
+        http_method: GET
+        module_nm: member
+        version_no: '1'
+        model_classpath: Member
+        model_method: details
+        model_method_params: '{"group_id": [102, 2, 1, 101], "open_by_group": true}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["2", "1", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{"maxage": 0}'
+        preprocess: '[]'
+    -
+        api_uri: members
+        summary: ''
+        description: ''
+        http_method: GET
+        module_nm: member
+        version_no: '1'
+        model_classpath: Member
+        model_method: list
+        model_method_params: '{"cnt": 1000, "group_id": [101]}'
+        memo: null
+        auth: '{"class": null, "value": ["1", "2", "110"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: member/update
+        summary: 'In use'
+        description: ''
+        http_method: POST
+        module_nm: member
+        version_no: '1'
+        model_classpath: Member
+        model_method: update
+        model_method_params: '{"self_only": true, "unuse_columns": ["profileimage"]}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["2", "1", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: login
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: login
+        version_no: '1'
+        model_classpath: Login
+        model_method: login_challenge
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": null, "value": null}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: logout
+        summary: null
+        description: null
+        http_method: POST
+        module_nm: login
+        version_no: '1'
+        model_classpath: Login
+        model_method: logout
+        model_method_params: '[]'
+        memo: null
+        auth: '{"class": null, "value": null}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: profile
+        summary: 'In use'
+        description: ''
+        http_method: GET
+        module_nm: login
+        version_no: '1'
+        model_classpath: Login
+        model_method: profile
+        model_method_params: '{"basic_info": ["name1", "name2"]}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["110", "2", "1", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[{"data":{"content_subject":"Add Geo location","category_name":""},"type":"function"}]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: reminder
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: login
+        version_no: '1'
+        model_classpath: Login
+        model_method: reminder
+        model_method_params: '{"password_reset_page_url": "/reminder/"}'
+        memo: null
+        auth: '{"class": null, "value": null}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: member/regist
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: member
+        version_no: '1'
+        model_classpath: Member
+        model_method: insert
+        model_method_params: '{"login_ok_flg": 1, "unuse_columns": ["profileimage"], "default_group_id": [101]}'
+        memo: null
+        auth: '{"class": null, "value": null}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: upload
+        summary: 'Upload files'
+        description: ''
+        http_method: POST
+        module_nm: rcms_api
+        version_no: '1'
+        model_classpath: Files
+        model_method: upload
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["2", "1", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: inquiry/get
+        summary: ''
+        description: ''
+        http_method: GET
+        module_nm: inquiry
+        version_no: '1'
+        model_classpath: InquiryForm
+        model_method: details
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["2", "110", "117", "1"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: topics
+        summary: 'In use'
+        description: ''
+        http_method: GET
+        module_nm: topics
+        version_no: '1'
+        model_classpath: Topics
+        model_method: list
+        model_method_params: '{"topics_group_id": [1], "filter_request_allow_list": [":ALL"]}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1", "2", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: topic/detail
+        summary: 'In use'
+        description: ''
+        http_method: GET
+        module_nm: topics
+        version_no: '1'
+        model_classpath: Topics
+        model_method: details
+        model_method_params: '{"topics_group_id": [1]}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["2", "110", "1", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: topic/category
+        summary: 'In use'
+        description: ''
+        http_method: GET
+        module_nm: topics
+        version_no: '1'
+        model_classpath: TopicsCategory
+        model_method: list
+        model_method_params: '{"topics_group_id": 1}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1", "2"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: topic/preview
+        summary: ''
+        description: ''
+        http_method: GET
+        module_nm: topics
+        version_no: '1'
+        model_classpath: Topics
+        model_method: preview
+        model_method_params: '{"topics_group_id": [1]}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1", "2"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: favorites
+        summary: ''
+        description: ''
+        http_method: GET
+        module_nm: menu
+        version_no: '1'
+        model_classpath: Favorite
+        model_method: list
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1", "2", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: favorites
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: menu
+        version_no: '1'
+        model_classpath: Favorite
+        model_method: insert
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1", "2", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: favorites/delete
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: menu
+        version_no: '1'
+        model_classpath: Favorite
+        model_method: delete
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1", "2", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: inquiry/1
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: inquiry
+        version_no: '1'
+        model_classpath: InquiryMessage
+        model_method: send
+        model_method_params: '{"id": 1}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["2", "1", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: topics/update
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: topics
+        version_no: '1'
+        model_classpath: Topics
+        model_method: update
+        model_method_params: '{"topics_group_id": 1}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1", "2", "110", "117"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: null
+        preprocess: '[]'
+    -
+        api_uri: topics_detail/preview
+        summary: ''
+        description: ''
+        http_method: GET
+        module_nm: topics
+        version_no: '1'
+        model_classpath: Topics
+        model_method: preview
+        model_method_params: '{"topics_group_id": [1]}'
+        memo: null
+        auth: '{"class": null, "value": null}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: reset_password
+        summary: ''
+        description: ''
+        http_method: POST
+        module_nm: login
+        version_no: '1'
+        model_classpath: Login
+        model_method: reset_password
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": null, "value": null}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: member/settings
+        summary: 'member settings'
+        description: ''
+        http_method: GET
+        module_nm: member
+        version_no: '1'
+        model_classpath: MemberForm
+        model_method: details
+        model_method_params: '{}'
+        memo: null
+        auth: '{"class": null, "value": null}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+    -
+        api_uri: players
+        summary: ''
+        description: ''
+        http_method: GET
+        module_nm: topics
+        version_no: '1'
+        model_classpath: Topics
+        model_method: list
+        model_method_params: '{"topics_group_id": [7]}'
+        memo: null
+        auth: '{"class": "GroupAuth", "value": ["1"]}'
+        open_flg: 1
+        request_api_id: null
+        postprocess: '[]'
+        cache_settings: '{}'
+        preprocess: '[]'
+static_contents:
+    -
+        subject: 'Add Geo location'
+        contents: "{assign_array var=processed_json values=\"\"}\r\n{assign var=processed_json value=$json}\r\n{assign var=processed_json.geo_country_code value=$smarty.const.GEO_COUNTRY_CODE}\r\n{assign var=processed_json.geo_region value=$smarty.const.GEO_REGION}\r\n{assign var=processed_json.geo_conn_speed value=$smarty.const.GEO_CONN_SPEED}"
+        open_flg: 1
+        design_flg: null
+        secure_level: null
+        editable_group: null
+        pc_flg: 1
+        mobile_flg: 0
+        smarty_flg: null
+        smartphone_flg: null
+        social_flg: null
+        wysiwyg_flg: null
+        static_sysnm: add_geo_location
+        memo: ''
+        use_func: '[]'
+        trigger_sysnm: ''
+        trigger_module_id: 0
+        category_name: ''
