@@ -80,8 +80,7 @@ This project is configured to be hosted on cloudflare as a worker, so please mak
 This project is configured to be directly published to a production environment when you push a modification to the `master` branch, the workflow `deploy` process will executes serval steps before publishing to Cloudflare.
 [![Image from Gyazo](https://t.gyazo.com/teams/diverta/456b72cb5d2fde90afbfc7e4f5b72228.png)](https://diverta.gyazo.com/456b72cb5d2fde90afbfc7e4f5b72228)
 
-```
-mermaid
+```mermaid
 flowchart LR;
     A[Set up job] --> B[Cancel Previous Runs]
     B --> C[Checkout to the latest version]
