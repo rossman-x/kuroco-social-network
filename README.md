@@ -153,3 +153,12 @@ The main directory of this project is `<rootDir>/app`, if you want to add routes
 ## Project configuration
 
 This project is typed with typescript, units tests have a different configuration than e2e tests, we use differents configuration for the two types of tests in order to avoid conflicts between the two.
+
+## Project usecases
+
+This project is created with basic features in order to show how to use Kuroco in a remix project.
+
+ - Login feature: This feature is used to login to the application, it is a simple form that uses the `@Input` decorator to bind the user input to the form.
+ In order to add new users, go to the Members section in your kuroco management panel, and added a new user with avatar, name, email and password fields.
+  - Post feature: This feature is used to create a new post, posts are displayed with text content and images attached, hashtags and likes are also used, you can also add a new comment to a post.
+> Kuroco have a special feature that allows you to process an image before fetching it, please check [Dynamic conversion of images](https://kuroco.app/docs/reference/api-convert-image/) for more information.
