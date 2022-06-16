@@ -82,7 +82,7 @@ This project is configured to be directly published to a production environment 
 
 ```
 mermaid
-flowchart LR
+flowchart LR;
     A[Set up job] --> B[Cancel Previous Runs]
     B --> C[Checkout to the latest version]
     C --> D[Setup node]
