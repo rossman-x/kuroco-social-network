@@ -81,7 +81,7 @@ This project is configured to be directly published to a production environment 
 [![Image from Gyazo](https://t.gyazo.com/teams/diverta/456b72cb5d2fde90afbfc7e4f5b72228.png)](https://diverta.gyazo.com/456b72cb5d2fde90afbfc7e4f5b72228)
 
 ```mermaid
-flowchart LR;
+graph TD;
     A[Set up job] --> B[Cancel Previous Runs]
     B --> C[Checkout to the latest version]
     C --> D[Setup node]
