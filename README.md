@@ -99,7 +99,8 @@ In order to keep our application fast and reliable, we are using **Kuroco** Post
 
 ```mermaid
 graph TD;
-    A[Post Details]-->B[List of comments details];
+    X{Fetch details} --> A[Post Details];
+    A-->B[List of comments details];
     A-->C[List of likers ids];
     B-->D[Commenters details];
     A-->E[List of hashtags];
