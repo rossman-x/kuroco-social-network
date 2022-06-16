@@ -154,9 +154,9 @@ The main directory of this project is `<rootDir>/app`, if you want to add routes
 
 This project is typed with typescript, units tests have a different configuration than e2e tests, we use differents configuration for the two types of tests in order to avoid conflicts between the two.
 
-## Project usecases
+## Project features
 
-This project is created with basic features in order to show how to use Kuroco in a remix project.
+This project is created with basic features in order to explain how to use Kuroco in a remix project.
 
  - Login feature: This feature is used to login to the application, it is a simple form that uses the `@Input` decorator to bind the user input to the form.
  In order to add new users, go to the Members section in your kuroco management panel, and added a new user with avatar, name, email and password fields.
