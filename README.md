@@ -30,7 +30,7 @@ In order to recreate this project and run it on your local machine, please follo
 
  1. Install the dependencies
 `npm install`
-> Before moving to the next step, make sure you have configured your cloudflare account and you logged in from the cli.
+> Before moving to the next step, make sure you have configured your cloudflare account and you logged in from the cli (Check bellow).
  2. Open the project's folder and execute this command:
  `npm run start-server`
 
@@ -49,10 +49,6 @@ This project contains Unit tests and E2E tests that are also executed in the CI 
 > For E2E tests, we use cypress, you can install cypress on your local machine to watch the testing process live.
  - To run E2E tests, please execute this command:
  `npm run e2e`
-
-## Project Structure
-
-The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.x
 
 ## Kuroco configuration
 
@@ -92,3 +88,19 @@ secrets.CF_ACCOUNT_ID
 ```
 > You can find your account id in your Cloudflare account and your API token in your account settings.
 
+## Project Structure
+
+The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.
+
+
+## Kuroco Post processing functions
+
+In order to keep our application fast and reliable, we are using **Kuroco** Post Processing functions to process the content of the posts, users and comments when they are fetched from the api.
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
