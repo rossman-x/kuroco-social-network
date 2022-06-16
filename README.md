@@ -59,7 +59,7 @@ This project contains Unit tests and E2E tests that are also executed in the CI 
 Please make sure you sign up to [Kuroco free trial](https://kuroco.app/free_trial/) program, after you verify your email address, please create a new content named `Posts` with title, content and image fields.
 
 please open the api page and select `import api`, then upload the file `<rootDir>/exported_api.yaml`. Make sure to modify `topics_group_id` and `default_group_id` and match it with your model id and users group id.
-[![Image from Gyazo](https://t.gyazo.com/teams/diverta/7445f525555aeb4d852380fa5a7088c2.png)](https://diverta.gyazo.com/7445f525555aeb4d852380fa5a7088c2)
+[![Image from Gyazo](https://t.gyazo.com/teams/diverta/a67f7dd649b3ef26b2c4146a06ec25cb.png)](https://diverta.gyazo.com/a67f7dd649b3ef26b2c4146a06ec25cb)
 [![Image from Gyazo](https://t.gyazo.com/teams/diverta/af3a001cc0925c4377be42704fa79dcc.png)](https://diverta.gyazo.com/af3a001cc0925c4377be42704fa79dcc)
 
 Make sure you update the Host endpoint in `app/R.ts` file.
