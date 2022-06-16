@@ -64,12 +64,13 @@ please open the api page and select `import api`, then upload the file `<rootDir
 
 Make sure you update the Host endpoint in `app/R.ts` file.
 
-## Postman collection
+## Testing Api response
 
 In order to test your new api, please use this [postman collection](https://www.getpostman.com/collections/7cd8473b5c2f4790c0d5) and modify the website subdomain so it links to your kuroco api.
 
 You can also use Swagger UI available in your kuroco management panel.
 
+[![Image from Gyazo](https://t.gyazo.com/teams/diverta/ff77d1774da065d0c7f3df2e3e9f9a95.png)](https://diverta.gyazo.com/ff77d1774da065d0c7f3df2e3e9f9a95)
 
 ## Hosting configuration
 
@@ -85,6 +86,7 @@ This project is configured to be hosted on cloudflare as a worker, so please mak
 ## Continuous integration
 
 This project is configured to be directly published to a production environment when you push a modification to the `master` branch, the workflow `deploy` process will executes serval steps before publishing to Cloudflare.
+
 ```mermaid
 graph TD;
     A[Set up job] --> B[Cancel Previous Runs]
@@ -111,10 +113,6 @@ secrets.CF_ACCOUNT_ID
 
 > You can find your account id in your Cloudflare account and your API token in your account settings.
 
-## Project Structure
-
-The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.
-
 ## Kuroco Post processing functions
 
 In order to keep our application fast and reliable, we are using **Kuroco** Post Processing functions to process the content of the posts, users and comments when they are fetched from the api.
@@ -135,3 +133,23 @@ graph TD;
     X{Fetch details} --> |id=?|A[User Details];
     A-->|Join|B[List of posts of this user];
 ```
+
+## Project Structure
+
+The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.
+
+    - `app/R.ts`: This file contains the main routes of the application.
+    - `app/components/`: This directory contains the components of the application.
+    - `app/services/`: This directory contains the services of the application.
+    - `app/utils/`: This directory contains the utilities of the application.
+    - `app/declarations/`: This directory contains the models of the application.
+    - `app/hooks/`: This directory contains the state management hooks of the application.
+    - `app/assets/`: This directory contains the assets of the application.
+    - `app/router/`: This directory contains the router of the application.
+    - `test/`: This directory contains the units tests of the application.
+    - `cypress/`: This directory contains the e2e tests of the application.
+    - `app/styles/`: This directory contains some designs used in the application, please note that this application use mainly Tailwind ofr the styling.
+
+## Project configuration
+
+This project is typed with typescript, units tests have a different configuration than e2e tests, we use differents configuration for the two types of tests in order to avoid conflicts between the two.
