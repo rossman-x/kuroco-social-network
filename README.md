@@ -62,7 +62,14 @@ please open the api page and select `import api`, then upload the file `<rootDir
 [![Image from Gyazo](https://t.gyazo.com/teams/diverta/7445f525555aeb4d852380fa5a7088c2.png)](https://diverta.gyazo.com/7445f525555aeb4d852380fa5a7088c2)
 [![Image from Gyazo](https://t.gyazo.com/teams/diverta/af3a001cc0925c4377be42704fa79dcc.png)](https://diverta.gyazo.com/af3a001cc0925c4377be42704fa79dcc)
 
+Make sure you update the Host endpoint in `app/R.ts` file.
+
+## Postman collection
+
 In order to test your new api, please use this [postman collection](https://www.getpostman.com/collections/7cd8473b5c2f4790c0d5) and modify the website subdomain so it links to your kuroco api.
+
+You can also use Swagger UI available in your kuroco management panel.
+
 
 ## Hosting configuration
 
@@ -78,8 +85,6 @@ This project is configured to be hosted on cloudflare as a worker, so please mak
 ## Continuous integration
 
 This project is configured to be directly published to a production environment when you push a modification to the `master` branch, the workflow `deploy` process will executes serval steps before publishing to Cloudflare.
-[![Image from Gyazo](https://t.gyazo.com/teams/diverta/456b72cb5d2fde90afbfc7e4f5b72228.png)](https://diverta.gyazo.com/456b72cb5d2fde90afbfc7e4f5b72228)
-
 ```mermaid
 graph TD;
     A[Set up job] --> B[Cancel Previous Runs]
