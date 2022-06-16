@@ -105,4 +105,11 @@ graph TD;
     B-->|Join|D[Commenters details];
     A-->|Join|E[List of hashtags];
     A-->|Join|F[Poster details];
+    C-->|Filter|G[Likers details];
+```
+
+```mermaid
+graph TD;
+    X{Fetch details} --> |id=?|A[User Details];
+    A-->|Join|B[List of posts of this user];
 ```
