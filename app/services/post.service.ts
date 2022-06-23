@@ -38,3 +38,18 @@ export const removeFromFavorites = async (postId: number) => {
     action_type: 0,
   });
 };
+
+export const createPost = async (
+  title: string,
+  content: string,
+  hashtags: string[],
+  fileId?: string
+) => {
+  const response = await postData(`${HostUrl}/posts/create`, {
+    title,
+    content,
+    hashtags,
+    fileId,
+  });
+  return response;
+};

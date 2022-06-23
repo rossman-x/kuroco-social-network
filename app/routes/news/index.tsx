@@ -4,14 +4,15 @@ import Spinner from "~/components/spinner";
 import Post from "~/declarations/post";
 import { getPostsList } from "~/services/post.service";
 import styles from "~/styles/post.css";
-
+import NewPostComponent from "~/components/new-post-component";
+import useInfo from "~/hooks/useInfo";
 export const links = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
 const NewsComponent = () => {
   const [posts, updatePosts] = useState<Post[] | undefined>();
-
+  const me = useInfo();
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -31,6 +32,7 @@ const NewsComponent = () => {
 
   return (
     <div className="">
+      <NewPostComponent poster={me || undefined} />
       {posts ? (
         posts.map((post) => (
           <PostComponent post={post} updatePost={updatePost} />

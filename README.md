@@ -134,6 +134,8 @@ graph TD;
     A-->|Join|B[List of posts of this user];
 ```
 
+When using `direct=1` in `api_internal` calls, the response is faster, but when we have many data to fetch at the same time, it returns an error `502`, so we replaced the `direct` attribute with `member_id`, this will prevent any error when requesting many data at the same time.
+
 ## Project Structure
 
 The main directory of this project is `<rootDir>/app`, if you want to add routes, components or services, you should add them in this directory.
@@ -158,7 +160,8 @@ This project is typed with typescript, units tests have a different configuratio
 
 This project is created with basic features in order to show how to use Kuroco in a remix project.
 
- - Login feature: This feature is used to login to the application, it is a simple form that uses the `@Input` decorator to bind the user input to the form.
- In order to add new users, go to the Members section in your kuroco management panel, and added a new user with avatar, name, email and password fields.
-  - Post feature: This feature is used to create a new post, posts are displayed with text content and images attached, hashtags and likes are also used, you can also add a new comment to a post.
-> Kuroco have a special feature that allows you to process an image before fetching it, please check [Dynamic conversion of images](https://kuroco.app/docs/reference/api-convert-image/) for more information.
+- Login feature: This feature is used to login to the application, it is a simple form that uses the `@Input` decorator to bind the user input to the form.
+  In order to add new users, go to the Members section in your kuroco management panel, and added a new user with avatar, name, email and password fields.
+- Post feature: This feature is used to create a new post, posts are displayed with text content and images attached, hashtags and likes are also used, you can also add a new comment to a post.
+  > Kuroco have a special feature that allows you to process an image before fetching it, please check [Dynamic conversion of images](https://kuroco.app/docs/reference/api-convert-image/) for more information.
+- Post creation feature: You can publish a new post with your network, the post can contains a title, description and photos, you can also add hashtags to your post, a display form will show you what it looks like before you publish to the network.

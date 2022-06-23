@@ -1,6 +1,6 @@
-import Comment from "~/declarations/comment";
-import Post from "~/declarations/post";
-import User from "~/declarations/user";
+import type Comment from "~/declarations/comment";
+import type Post from "~/declarations/post";
+import type User from "~/declarations/user";
 
 export const userConverter = (u: any) => {
   return {
@@ -41,5 +41,22 @@ export const postConverter = (p: any) => {
     poster: userConverter(p.poster.details),
     likers: p?.favs?.list ?? [],
     createdAt: p.inst_ymdhi,
+    hashtags:
+      p.hashtags &&
+      p.hashtags.length &&
+      p.hashtags[0].list &&
+      p.hashtags[0].list.length
+        ? p.hashtags[0].list.map((h: any) => h.ext_col_01)
+        : [],
   } as Post;
 };
+
+/*----------------------------------------------------------------
+
+hashtags: [{module_id: 6,…}]
+0: {module_id: 6,…}
+list: [{tag_id: 2, tag_nm: "POST_1", open_contents_cnt: 1, all_contents_cnt: 1, open_flg: 1,…}]
+0: {tag_id: 2, tag_nm: "POST_1", open_contents_cnt: 1, all_contents_cnt: 1, open_flg: 1,…}
+all_contents_cnt: 1
+
+*/

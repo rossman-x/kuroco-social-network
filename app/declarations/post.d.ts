@@ -11,4 +11,5 @@ export default interface Post {
   comments?: Comment[];
   likers?: number[];
   poster: User;
+  hashtags?: string[];
 }

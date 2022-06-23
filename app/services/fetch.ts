@@ -41,3 +41,26 @@ export const getData = async (endpoint: string, authRequired = true) => {
   }
   return await fetchResponse.json();
 };
+
+export const uploadFile = async (url: string, file: File) => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+  var myHeaders = new Headers();
+  myHeaders.append("X-RCMS-API-ACCESS-TOKEN", token);
+
+  const formdata = new FormData();
+  formdata.append("file", file);
+
+  const fetchResponse = await fetch(url, {
+    method: "POST",
+    headers: myHeaders,
+    body: formdata,
+    redirect: "follow",
+  });
+
+  if (!fetchResponse.ok) {
+    if (fetchResponse.status === 401) window.location.href = "/login";
+    throw new Error(`Cannot fetch data, error code: ${fetchResponse.status}`);
+  }
+  return fetchResponse.json();
+};

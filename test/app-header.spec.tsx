@@ -38,7 +38,7 @@ describe("Given app Header component is open", () => {
       });
       it("Then display the avatar icon correctly", () => {
         const { getByAltText } = render;
-        const imageElement = getByAltText(`Avatar image`);
+        const imageElement = getByAltText(`Avatar`);
         expect(imageElement).toBeInTheDocument();
         expect(imageElement).not.toHaveAccessibleDescription();
         expect(imageElement).toHaveAttribute("src", `${mockUserOne.avatar}`);
@@ -54,7 +54,7 @@ describe("Given app Header component is open", () => {
       });
       it("Then display the default avatar icon correctly", () => {
         const { getByAltText } = render;
-        const imageElement = getByAltText(`Avatar image`);
+        const imageElement = getByAltText(`Avatar`);
         expect(imageElement).toBeInTheDocument();
         expect(imageElement).not.toHaveAccessibleDescription();
         expect(imageElement).toHaveAttribute("src", `${avatarImage}`);

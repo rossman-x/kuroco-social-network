@@ -19,7 +19,7 @@ type props = {
   updatePost: (post: Post) => void;
 };
 
-const InPostSpinner = () => (
+export const InPostSpinner = () => (
   <svg
     role="status"
     className="inline w-4 h-4 mx-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -131,9 +131,10 @@ const PostComponent = ({ post, updatePost }: props) => {
           {
             /* Hashtags goes here */
             <div className="flex flex-wrap">
-              <PostHashtag hashtag="FirstHashtag" />
-              <PostHashtag hashtag="secondHashtag" />
-              <PostHashtag hashtag="thirdHashtag" />
+              {!!post &&
+                !!post.hashtags &&
+                !!post.hashtags.length &&
+                post.hashtags.map((h) => <PostHashtag hashtag={h} />)}
             </div>
           }
           {/* Comments section here */}
