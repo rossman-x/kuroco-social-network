@@ -3,6 +3,8 @@ import type Post from "~/declarations/post";
 import type User from "~/declarations/user";
 
 export const userConverter = (u: any) => {
+  let image = u.profileimage?.url;
+
   return {
     id: u.login_id,
     memberId: u.member_id,
@@ -15,7 +17,7 @@ export const userConverter = (u: any) => {
     phone: u.tel,
     hireDate: u.hire_date,
     office: u?.pull_down?.label,
-    avatar: u?.profileimage?.url,
+    avatar: !!image && image.split("/t=")[0] + "/ext" + image.split("/ext")[1],
   } as User;
 };
 
@@ -31,14 +33,12 @@ export const commentConverter = (c: any) => {
 
 export const postConverter = (p: any) => {
   const comments = p.comments.map(commentConverter);
-  let image;
-  if (p.image && p.image.url) image = p.image.url;
   return {
     id: p.topics_id,
     name: p.subject,
     title: p.title,
     content: p.content,
-    image: !!image && image.split("/t=")[0] + "/ext" + image.split("/ext")[1],
+    image: p.image.url,
     comments: comments,
     poster: userConverter(p.poster.details),
     likers: p?.favs?.list ?? [],
