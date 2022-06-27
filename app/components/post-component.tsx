@@ -41,13 +41,22 @@ export const InPostSpinner = () => (
 const PostComponent = ({ post, updatePost }: props) => {
   const currentUser = useInfo();
 
-  useEffect(() => {}, []);
   const isLiked = useMemo(
     () =>
       !!(
         currentUser &&
         post.likers &&
         post.likers.find((liker) => liker === currentUser.memberId)
+      ),
+    [post]
+  );
+
+  const isComplete = useMemo(
+    () =>
+      !!(
+        post.poster ||
+        (post.comments && post.comments.length) ||
+        (post.hashtags && post.hashtags.length)
       ),
     [post]
   );
@@ -64,6 +73,11 @@ const PostComponent = ({ post, updatePost }: props) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const expandPost = async () => {
+    if (isComplete) return;
+    window.location.href = `/news/${post.id}`;
   };
 
   const onSendComment = async () => {
@@ -104,28 +118,46 @@ const PostComponent = ({ post, updatePost }: props) => {
       setIsLikeLoading(false);
     }
   };
+
   return (
     <div className="w-2/5 md:w-8/12 sm:w-10/12 mx-auto rounded-lg bg-white mb-4">
-      <div className="post-main p-4">
-        <div className="post-header flex items-center h-12">
-          <img
-            className="h-12 w-12 mr-4 rounded-full"
-            src={post.poster.avatar ? post.poster.avatar : avatarImage}
-          />
-          <div>
-            <h3 className="text-lg">
-              {post.poster.firstName} {post.poster.lastName}
-            </h3>
-            <span className="text-sm">{post.poster.email}</span>
+      <div
+        className={`post-main p-4 ${isComplete ? "" : "cursor-pointer"}`}
+        onClick={expandPost}
+      >
+        {!!post.poster && (
+          <div className="post-header flex items-center h-12">
+            <img
+              className="h-12 w-12 mr-4 rounded-full"
+              src={post.poster?.avatar ? post.poster.avatar : avatarImage}
+              alt="avatar"
+            />{" "}
+            <div>
+              <h3 className="text-lg">
+                {post.poster.firstName} {post.poster.lastName}
+              </h3>
+
+              <span className="text-sm">{post.poster.email}</span>
+            </div>
           </div>
-        </div>
+        )}
         <div className="post-body mt-4 mb-2">
           <h2 className="text-lg font-bold mb-2">{post.title.toUpperCase()}</h2>
-          {!!post.content && <div className="mb-2">{post.content}</div>}
+          {!!post.content && (
+            <div className="mb-2">
+              {post.content.split("\n").map((c) => (
+                <>
+                  <p>{c}</p>
+                  {"\n"}
+                </>
+              ))}
+            </div>
+          )}
           {!!post.image && (
             <img
               className="w-full mx-auto my-4 rounded-lg"
               src={`${post.image}?format=pjpg&auto=webp&quality=85,75`}
+              alt="post"
             />
           )}
           {
@@ -139,50 +171,55 @@ const PostComponent = ({ post, updatePost }: props) => {
           }
           {/* Comments section here */}
           <div className="">
-            {/* HERE GOES THE LIST OF <PostComment ... /> */}
             {!!post.comments &&
               post.comments.map((comment) => <PostComment comment={comment} />)}
           </div>
         </div>
         <div className="post-footer flex flex-col ">
-          <div className="flex flex-row items-center justify-between">
-            <div className="inline-flex items-center mr-4 relative">
-              {isLikeLoading ? (
-                <InPostSpinner />
-              ) : (
-                <>
-                  <img
-                    src={isLiked ? favOnImage : favOffImage}
-                    className={`w-8 cursor-pointer ${
-                      isLiked ? "bg-red-300 rounded-full p-[6px]" : ""
-                    }`}
-                    onClick={updateLike}
-                  />
-                  <span className="rounded-full text-center text-[14px] px-[5px] text-red-900 bg-red-300 absolute left-[18px] top-[16px]">
-                    {post.likers ? post.likers.length : 0}
-                  </span>
-                </>
-              )}
-            </div>
-            <div className="flex flex-row items-center justify-end grow">
-              <input
-                className="block w-full p-2 bg-gray-100 border-gray-700 rounded-md placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
-                id="comment"
-                ref={commentRef}
-                type="text"
-                placeholder="Insert your comment"
-              />
-              {isSendingComment ? (
-                <InPostSpinner />
-              ) : (
-                <img
-                  src={sendImage}
-                  className="ml-2 w-8 cursor-pointer"
-                  onClick={onSendComment}
+          {post.poster && (
+            <div className="flex flex-row items-center justify-between">
+              <div
+                className="inline-flex items-center mr-4 relative"
+                onClick={() => !isLikeLoading && updateLike()}
+              >
+                {isLikeLoading ? (
+                  <InPostSpinner />
+                ) : (
+                  <>
+                    <img
+                      src={isLiked ? favOnImage : favOffImage}
+                      className={`w-8 cursor-pointer ${
+                        isLiked ? "bg-red-300 rounded-full p-[6px]" : ""
+                      }`}
+                      alt="Favs"
+                    />
+                    <span className="rounded-full text-center text-[14px] px-[5px] text-red-900 bg-red-300 absolute left-[18px] top-[16px]">
+                      {post.likers ? post.likers.length : 0}
+                    </span>
+                  </>
+                )}
+              </div>
+              <div className="flex flex-row items-center justify-end grow">
+                <input
+                  className="block w-full p-2 bg-gray-100 border-gray-700 rounded-md placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
+                  id="comment"
+                  ref={commentRef}
+                  type="text"
+                  placeholder="Insert your comment"
                 />
-              )}
+                {isSendingComment ? (
+                  <InPostSpinner />
+                ) : (
+                  <img
+                    src={sendImage}
+                    className="ml-2 w-8 cursor-pointer"
+                    onClick={onSendComment}
+                    alt="Send Comment"
+                  />
+                )}
+              </div>
             </div>
-          </div>
+          )}
           <div className="">
             <span className="text-sm text-right text-gray-600 flex justify-end mt-2">
               Posted on {post.createdAt.substring(0, 16).replace("T", " at ")}.

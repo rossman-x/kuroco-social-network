@@ -1,10 +1,10 @@
-import User from "~/declarations/user";
+import type User from "~/declarations/user";
 import avatarImage from "~/assets/avatar.png";
 import { useRef, useState } from "react";
 import Button from "./button";
 import PostHashtag from "./post-hashtag";
 import { uploadFile } from "~/services/fetch";
-import { DomainName, HostUrl, MngUrl } from "~/R";
+import { HostUrl } from "~/R";
 import Spinner from "./spinner";
 import { createPost } from "~/services/post.service";
 const tagElement = (
@@ -86,6 +86,13 @@ const NewPostComponent = ({ poster }: { poster?: User }) => {
   const addHashtag = () => {
     const hashtag = prompt("Hashtag text");
     if (!hashtag) return;
+    const scMatch = hashtag.match(/[!@#$%^&*()\-=+ ]/);
+    if (scMatch) {
+      alert(
+        `Hashtag cannot contain unallowed special character ->${scMatch[0]}<-.`
+      );
+      return;
+    }
     setHashtags([...hashtags, hashtag]);
   };
 
@@ -131,7 +138,10 @@ const NewPostComponent = ({ poster }: { poster?: User }) => {
     setIsLoading(true);
 
     const title = postRef.current.value;
-    const content = contentRef.current.value;
+
+    const [htgs, updatedValue] = retreiveHashtags(contentRef.current.value);
+    const content = `${updatedValue}`;
+    const tags = [...hashtags, ...htgs];
 
     let fileId;
     if (
@@ -155,13 +165,44 @@ const NewPostComponent = ({ poster }: { poster?: User }) => {
     }
 
     try {
-      const response = await createPost(title, content, hashtags, fileId);
-      console.log(response);
+      await createPost(title, content, tags, fileId);
+      setIsLoading(false);
       return window.location.reload();
     } catch (error) {
       alert("Cannot create post:\n" + error);
       setIsLoading(false);
     }
+  };
+
+  const checkComment = () => {
+    if (!contentRef || !contentRef.current || !contentRef.current.value) return;
+    const value = contentRef.current.value;
+    if (
+      !value.length ||
+      !value[value.length - 1] ||
+      value[value.length - 1] !== " "
+    )
+      return;
+
+    const [htgs, updatedValue] = retreiveHashtags(value);
+    contentRef.current.value = `${updatedValue}`;
+    setHashtags([...hashtags, ...htgs]);
+  };
+
+  const retreiveHashtags: (value: string) => [string[], string] = (value) => {
+    const regexp = /#[a-zA-Z0-9]+/g;
+
+    const matches = value.matchAll(regexp);
+
+    const hashtags = [];
+
+    // List all matches contained in value
+    for (const match of matches) {
+      const m = match[0];
+      hashtags.push(m.replace("#", "").trim());
+      value = value.replace(m, "");
+    }
+    return [hashtags, value.replace("  ", " ")];
   };
 
   return isLoading ? (
@@ -192,6 +233,7 @@ const NewPostComponent = ({ poster }: { poster?: User }) => {
           <textarea
             placeholder="Share your thoughts..."
             ref={contentRef}
+            onChange={checkComment}
             className="w-full max-h-40 h-40 p-2 pl-4 bg-gray-100 border-gray-700 rounded-md placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
           ></textarea>
           {image && (

@@ -56,10 +56,25 @@ it("Can create a new post with all details", () => {
       .should("exist")
       .and("have.attr", "src");
     cy.get('[data-testid="Share on the network"]').click();
-    cy.wait(15000);
+    cy.wait(5000);
     cy.url().should("include", "/news");
     cy.contains(`TITLE ${rand}`);
     cy.contains(`CONTENT ${rand}`);
+    cy.contains(`CONTENT ${rand}`).click();
+    cy.url().should("include", "/news/");
+    cy.contains(`TITLE ${rand}`);
+    cy.contains(`CONTENT ${rand}`);
+    cy.get(".inline-flex > .rounded-full").should("have.text", "0");
+    cy.get(".inline-flex > .w-8").click();
+    cy.wait(500);
+    cy.get(".inline-flex > .rounded-full").should("have.text", "1");
+    cy.get(".inline-flex > .w-8").click();
+    cy.wait(500);
+    cy.get(".inline-flex > .rounded-full").should("have.text", "0");
+    cy.get("#comment").type(`COMMENT ${rand}`);
+    cy.get(".ml-2").click();
+    cy.wait(500);
+    cy.get(".post-body > :nth-child(5)").contains(`COMMENT ${rand}`);
   });
 });
 

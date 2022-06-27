@@ -10,6 +10,6 @@ export default interface Post {
   createdAt: string;
   comments?: Comment[];
   likers?: number[];
-  poster: User;
+  poster?: User;
   hashtags?: string[];
 }

@@ -32,7 +32,8 @@ export const commentConverter = (c: any) => {
 };
 
 export const postConverter = (p: any) => {
-  const comments = p.comments.map(commentConverter);
+  const comments =
+    p.comments && p.comments.length ? p.comments.map(commentConverter) : [];
   return {
     id: p.topics_id,
     name: p.subject,
@@ -40,7 +41,7 @@ export const postConverter = (p: any) => {
     content: p.content,
     image: p.image.url,
     comments: comments,
-    poster: userConverter(p.poster.details),
+    poster: p.poster && p.poster.details && userConverter(p.poster.details),
     likers: p?.favs?.list ?? [],
     createdAt: p.inst_ymdhi,
     hashtags:
@@ -52,13 +53,3 @@ export const postConverter = (p: any) => {
         : [],
   } as Post;
 };
-
-/*----------------------------------------------------------------
-
-hashtags: [{module_id: 6,…}]
-0: {module_id: 6,…}
-list: [{tag_id: 2, tag_nm: "POST_1", open_contents_cnt: 1, all_contents_cnt: 1, open_flg: 1,…}]
-0: {tag_id: 2, tag_nm: "POST_1", open_contents_cnt: 1, all_contents_cnt: 1, open_flg: 1,…}
-all_contents_cnt: 1
-
-*/

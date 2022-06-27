@@ -35,7 +35,10 @@ const NewsComponent = () => {
       <NewPostComponent poster={me || undefined} />
       {posts ? (
         posts.map((post) => (
-          <PostComponent post={post} updatePost={updatePost} />
+          <PostComponent
+            post={post}
+            updatePost={updatePost}
+          />
         ))
       ) : (
         <Spinner />
