@@ -2,10 +2,8 @@ import avatarImage from "~/assets/avatar.png";
 import sendImage from "~/assets/send-icon.png";
 import favOffImage from "~/assets/fav-off.png";
 import favOnImage from "~/assets/fav-on.png";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import PostComment from "./post-comment";
-import Post from "~/declarations/post";
-import User from "~/declarations/user";
 import {
   addToFavorites,
   removeFromFavorites,
@@ -14,6 +12,7 @@ import {
 } from "~/services/post.service";
 import PostHashtag from "./post-hashtag";
 import useInfo from "~/hooks/useInfo";
+import type Post from "~/declarations/post";
 type props = {
   post: Post;
   updatePost: (post: Post) => void;
@@ -48,7 +47,7 @@ const PostComponent = ({ post, updatePost }: props) => {
         post.likers &&
         post.likers.find((liker) => liker === currentUser.memberId)
       ),
-    [post]
+    [post, currentUser]
   );
 
   const isComplete = useMemo(
