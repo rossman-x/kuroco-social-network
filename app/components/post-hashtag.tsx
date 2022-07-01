@@ -33,7 +33,6 @@ const PostHashtag = ({
     data-testid={hashtag}
   >
     <p>{`#${hashtag}`}</p>
-
     {!!onDelete && (
       <div
         className="cursor-pointer absolute top-[-6px] right-0"

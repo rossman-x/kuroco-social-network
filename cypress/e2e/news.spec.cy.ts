@@ -72,9 +72,16 @@ it("Can create a new post with all details", () => {
     cy.wait(500);
     cy.get(".inline-flex > .rounded-full").should("have.text", "0");
     cy.get("#comment").type(`COMMENT ${rand}`);
-    cy.get(".ml-2").click();
+    cy.get("[src='/build/_assets/send-icon-7GDCHACG.png']").click();
     cy.wait(500);
     cy.get(".post-body > :nth-child(5)").contains(`COMMENT ${rand}`);
+    cy.get("[data-testid='delete-comment']").click();
+    cy.get(".post-body > :nth-child(5)").should("not.contain", `COMMENT ${rand}`);
+    cy.get("[data-testid='delete_post']").click();
+    cy.wait(1000);
+    cy.url().should("include", "/news");
+    cy.should("not.contain",`TITLE ${rand}`);
+    cy.should("not.contain",`CONTENT ${rand}`);
   });
 });
 

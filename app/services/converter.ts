@@ -28,6 +28,7 @@ export const commentConverter = (c: any) => {
     user: userConverter(c.sender),
     content: c.comment,
     createdAt: c.created_at,
+    extData: c.ext_data && c.ext_data.length != 0 ? c.ext_data : undefined,
   } as Comment;
 };
 

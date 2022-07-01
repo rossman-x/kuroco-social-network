@@ -1,6 +1,7 @@
 import { useParams } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import PostComponent from "~/components/post-component";
+import Spinner from "~/components/spinner";
 import Post from "~/declarations/post";
 import { getSinglePost } from "~/services/post.service";
 
@@ -23,8 +24,10 @@ const SingleComponent = () => {
   }, [params.single]);
   return (
     <div>
-      {!!currentPost && (
+      {currentPost ? (
         <PostComponent post={currentPost} updatePost={setCurrentPost} />
+      ) : (
+        <Spinner />
       )}
     </div>
   );

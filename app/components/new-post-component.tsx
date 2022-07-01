@@ -152,6 +152,16 @@ const NewPostComponent = ({ poster }: { poster?: User }) => {
     ) {
       try {
         const file = fileRef.current.files[0];
+        if (
+          ![
+            "image/jpeg",
+            "image/png",
+            "image/svg+xml",
+            "image/webp",
+            "image/gif",
+          ].includes(file.type)
+        )
+          throw new Error("Format not allowed");
         const response: any = await uploadFile(`${HostUrl}/image/new`, file);
         if (response && response["file_id"]) {
           fileId = response["file_id"];

@@ -6,4 +6,5 @@ export default interface Comment {
     user: User;
     content: string;
     createdAt: string;
+    extData?: string;
 }
