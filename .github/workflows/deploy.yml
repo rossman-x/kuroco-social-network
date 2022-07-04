@@ -24,6 +24,11 @@ jobs:
         run: npm run test
       - name: Running e2e tests
         run: npm run e2e
+      - name: Running sonarqube check
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       - name: Publish
         run: npx wrangler publish
         env:
