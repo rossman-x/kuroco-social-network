@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PostComponent from "~/components/post-component";
 import Spinner from "~/components/spinner";
-import Post from "~/declarations/post";
+import type Post from "~/declarations/post";
 import { getPostsList } from "~/services/post.service";
 import styles from "~/styles/post.css";
 import NewPostComponent from "~/components/new-post-component";
@@ -32,14 +32,14 @@ const NextSVG = (
 
 const NewsComponent = () => {
   const [posts, updatePosts] = useState<Post[] | undefined>();
-  const [currentPage, setCurrentPage] = useState(0);
-  const [totalCount, setTotalCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(1);
   const me = useInfo();
 
   //Create a function that return the total number of pages:
   const totalPages = useMemo(
     () => Math.ceil(totalCount / NumberOfPostsPerPage),
-    [totalCount, NumberOfPostsPerPage]
+    [totalCount]
   );
   const isLastPage = useMemo(
     () => currentPage >= totalPages,
@@ -71,13 +71,13 @@ const NewsComponent = () => {
         <Button
           path={BackSVG}
           text="Back"
-          color={currentPage == 0 ? "#a2a2a2" : "#64bfff"}
-          onClick={() => currentPage > 0 && setCurrentPage(currentPage - 1)}
+          color={currentPage > 1 ? "#64bfff" : "#a2a2a2"}
+          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
         ></Button>
       </div>
       <div className="rounded-full px-1 py-1 border-2 border-red-400 w-14">
         <h3 className="text-white font-extrabold text-center">
-          {currentPage + 1} / {totalPages + 1}
+          {currentPage} / {totalPages}
         </h3>
       </div>
       <div className="w-1/6">
@@ -98,7 +98,12 @@ const NewsComponent = () => {
         <>
           <BackNextComponent />
           {posts.map((post) => (
-            <PostComponent post={post} updatePost={(x) => updatePost(x)} />
+            <PostComponent
+              key={post.id}
+              post={post}
+              updatePost={(x) => updatePost(x)}
+              complete={false}
+            />
           ))}
           <BackNextComponent />
         </>

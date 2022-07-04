@@ -3,7 +3,7 @@ import sendImage from "~/assets/send-icon.png";
 import addImage from "~/assets/add-image.png";
 import favOffImage from "~/assets/fav-off.png";
 import favOnImage from "~/assets/fav-on.png";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import PostComment from "./post-comment";
 import {
   addToFavorites,
@@ -17,6 +17,7 @@ import useInfo from "~/hooks/useInfo";
 import type Post from "~/declarations/post";
 type props = {
   post: Post;
+  complete?: boolean;
   updatePost: (post?: Post) => void;
 };
 
@@ -62,11 +63,21 @@ const DeleteSvg = (
   </svg>
 );
 
-const PostComponent = ({ post, updatePost }: props) => {
+const PostComponent = ({ post, updatePost, complete = true }: props) => {
   const currentUser = useInfo();
-
   const inputRef = useRef<HTMLInputElement>(null);
   const [imageComment, setImageComment] = useState<string | undefined>();
+
+  const Content = useMemo(() => {
+    if (!post || !post.content || !post.content.length) return <>No Content.</>;
+    let content = post.content;
+    if (post.content.length > 300 && !complete)
+      content = `${content.substring(
+        0,
+        200 + content.substring(200, 300).indexOf(" ")
+      )}...`;
+    return content.split("\n").map((c) => <p>{c}</p>);
+  }, [complete, post]);
 
   const isLiked = useMemo(
     () =>
@@ -79,12 +90,7 @@ const PostComponent = ({ post, updatePost }: props) => {
   );
 
   const isComplete = useMemo(
-    () =>
-      !!(
-        post.poster ||
-        (post.comments && post.comments.length) ||
-        (post.hashtags && post.hashtags.length)
-      ),
+    () => !!(post.poster || (post.comments && post.comments.length)),
     [post]
   );
 
@@ -236,15 +242,7 @@ const PostComponent = ({ post, updatePost }: props) => {
         )}
         <div className="post-body mt-4 mb-2">
           <h2 className="text-lg font-bold mb-2">{post.title.toUpperCase()}</h2>
-          {!!post.content && (
-            <div className="mb-2">
-              {post.content.split("\n").map((c) => (
-                <>
-                  <p>{c}</p>
-                </>
-              ))}
-            </div>
-          )}
+          {!!post.content && <div className="mb-2">{Content}</div>}
           {!!post.image && (
             <img
               className="w-full mx-auto my-4 rounded-lg"
@@ -270,7 +268,7 @@ const PostComponent = ({ post, updatePost }: props) => {
         <div className="post-footer flex flex-col ">
           {post.poster && (
             <div className="flex flex-row items-center justify-between">
-              {!imageComment && (
+              {isComplete && (
                 <div
                   className="inline-flex items-center relative w-1/12"
                   onClick={() => !isLikeLoading && updateLike()}
@@ -344,8 +342,17 @@ const PostComponent = ({ post, updatePost }: props) => {
               </div>
             </div>
           )}
-          <div className="">
-            <span className="text-sm text-right text-gray-600 flex justify-end mt-2">
+          <div className="flex mt-2 justify-between">
+            {!isComplete &&
+              post.favCount !== undefined &&
+              !isNaN(post.favCount) && (
+                <span className="text-sm text-left text-gray-400">
+                  {` ❤ by ${post.favCount} user${
+                    post.favCount > 1 ? "s" : ""
+                  }.`}
+                </span>
+              )}
+            <span className="text-sm text-right text-gray-600">
               Posted on {post.createdAt.substring(0, 16).replace("T", " at ")}.
             </span>
           </div>

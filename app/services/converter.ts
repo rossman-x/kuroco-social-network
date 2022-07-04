@@ -35,6 +35,7 @@ export const commentConverter = (c: any) => {
 export const postConverter = (p: any) => {
   const comments =
     p.comments && p.comments.length ? p.comments.map(commentConverter) : [];
+  if (p.tags) p.hashtags = [{ list: p.tags }];
   return {
     id: p.topics_id,
     name: p.subject,
@@ -52,5 +53,6 @@ export const postConverter = (p: any) => {
       p.hashtags[0].list.length
         ? p.hashtags[0].list.map((h: any) => h.ext_col_01)
         : [],
+    favCount: p.favorite_cnt,
   } as Post;
 };

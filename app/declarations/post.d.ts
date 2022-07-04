@@ -12,4 +12,5 @@ export default interface Post {
   likers?: number[];
   poster?: User;
   hashtags?: string[];
+  favCount?: number;
 }
